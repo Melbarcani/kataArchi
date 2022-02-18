@@ -10,17 +10,26 @@ public static class Program
 		report,
 		unknown
 	}
-	//lots of comments!
+
+	private static string ExtractCommand(string[] args)
+	{
+		return args.Length > 0 ? args[0] : unknown.ToString();
+	}
+	private static string ExtractFile(string[] args)
+	{
+		string filePath = "C:/data.csv";
+		return args.Length >= 2 ? args[1] : filePath;
+	}
+
 	public static void Main(string[] args)
 	{
 
-		string filePath = "C:/data.csv";
 		
 		//add a title to our app  
 		Console.WriteLine(SALES_VIEWER_TITLE);
 		//extract the command name from the args  
-		string command = args.Length > 0 ? args[0] : unknown.ToString();  
-		string file = args.Length >= 2 ? args[1] : filePath;
+		string command = ExtractCommand(args);
+		string file = ExtractFile(args);
 		Parser parser = new Parser(file);
 		//read content of our data file  
 		//[2012-10-30] rui : actually it only works with this file, maybe it's a good idea to pass file //name as parameter to this app later?  
@@ -51,7 +60,6 @@ public static class Program
 			 foreach (string line in dataLines)  
 			 { 
 				 //extract columns from our csv line and add all these cells to the line  
-				 var cells = line.Split(',');
 				 var tableLine  = String.Join(
 		            " | ", 
 		            
@@ -61,7 +69,6 @@ public static class Program
 			 } 
 			 Console.WriteLine("+" + new String('-', headerTitles.Length+2) + "+");
 
-			// if command is report
 		} 
 		else if (command == report.ToString())  
 		{  
