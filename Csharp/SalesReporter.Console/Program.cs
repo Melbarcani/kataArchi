@@ -40,17 +40,16 @@ public static class Program
 			 string headerCSV = parser.parseHeader();  
 			 //get other content lines  
 			 var dataLines = parser.parseData();
-			 var columnInfos = new List<(int index, int size, string name)>();
+			 var columnInfos = new List<ColumnInfo>();
 			 //build the header of the table with column names from our data file  
-			 int i = 0;
 			 foreach (var columName in headerCSV.Split(','))
 			 {
-				 columnInfos.Add((i++, columName.Length, columName));
+				 columnInfos.Add(new ColumnInfo(columName));
 			 }
 
 			 var headerTitles  = String.Join(
 				 " | ", 
-				 columnInfos.Select(x=>x.name).Select(
+				 columnInfos.Select(x=>x.Name).Select(
 					 (val,ind) => val.PadLeft(16)));
 			 Console.WriteLine("+" + new String('-', headerTitles.Length + 2) + "+");
 			 Console.WriteLine("| " + headerTitles + " |");
