@@ -88,11 +88,11 @@ public static class Program
 			 averageItemPrice = Math.Round(totalSellsAmount / numberOfSoldItems,2);  
 			 Console.WriteLine($"+{new String('-',45)}+");
 			 Console.WriteLine($"| {NUMBER_OF_SALES.PadLeft(30)} | {numberOfsales.ToString().PadLeft(10)} |");
-			 Console.WriteLine($"| {" Number of clients".PadLeft(30)} | {clients.Count.ToString().PadLeft(10)} |");
-			 Console.WriteLine($"| {" Total items sold".PadLeft(30)} | {numberOfSoldItems.ToString().PadLeft(10)} |");
-			 Console.WriteLine($"| {" Total sales amount".PadLeft(30)} | {Math.Round(totalSellsAmount,2).ToString().PadLeft(10)} |");
-			 Console.WriteLine($"| {" Average amount/sale".PadLeft(30)} | {averageAmountSale.ToString().PadLeft(10)} |");
-			 Console.WriteLine($"| {" Average item price".PadLeft(30)} | {averageItemPrice.ToString().PadLeft(10)} |");
+			 Console.WriteLine($"| {NUMBER_OF_CLIENTS.PadLeft(30)} | {clients.Count.ToString().PadLeft(10)} |");
+			 Console.WriteLine($"| {TOTAL_ITEMS_SOLD.PadLeft(30)} | {numberOfSoldItems.ToString().PadLeft(10)} |");
+			 Console.WriteLine($"| {TOTAL_SALES_AMOUNT.PadLeft(30)} | {Math.Round(totalSellsAmount,2).ToString().PadLeft(10)} |");
+			 Console.WriteLine($"| {AVERAGE_AMOUNT_SALE.PadLeft(30)} | {averageAmountSale.ToString().PadLeft(10)} |");
+			 Console.WriteLine($"| {AVERAGE_ITEM_PRICE.PadLeft(30)} | {averageItemPrice.ToString().PadLeft(10)} |");
 			 Console.WriteLine($"+{new String('-',45)}+");
 		}  
 		else  
