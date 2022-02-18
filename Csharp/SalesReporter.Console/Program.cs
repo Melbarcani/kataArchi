@@ -31,6 +31,10 @@ public static class Program
 			 string headerCSV = parser.parseHeader();  
 			 //get other content lines  
 			 var dataLines = parser.parseData();
+			 foreach (string line in dataLines)
+			 {
+				 Console.WriteLine(line);
+			 }
 			 var columnInfos = new List<(int index, int size, string name)>();
 			 //build the header of the table with column names from our data file  
 			 int i = 0;
@@ -77,7 +81,8 @@ public static class Program
 			 { //get the cell values for the line  
 	 			var cells = line.Split(',');  
 	 			numberOfsales++;//increment the total of sales  
-	 			//to count the number of clients, we put only distinct names in a hashset //then we'll count the number of entries if (!clients.Contains(cells[1])) clients.Add(cells[1]);  
+	 			//to count the number of clients, we put only distinct names in a hashset //then we'll count the number of entries
+	 			if (!clients.Contains(cells[1])) clients.Add(cells[1]);  
 	 			numberOfSoldItems += int.Parse(cells[2]);//we sum the total of items sold here  
 	 			totalSellsAmount += double.Parse(cells[3]);//we sum the amount of each sell  
 	 			//we compare the current cell date with the stored one and pick the higher last = DateTime.Parse(cells[4]) > last ? DateTime.Parse(cells[4]) : last;  
