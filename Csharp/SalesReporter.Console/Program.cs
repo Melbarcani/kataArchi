@@ -31,10 +31,6 @@ public static class Program
 			 string headerCSV = parser.parseHeader();  
 			 //get other content lines  
 			 var dataLines = parser.parseData();
-			 foreach (string line in dataLines)
-			 {
-				 Console.WriteLine(line);
-			 }
 			 var columnInfos = new List<(int index, int size, string name)>();
 			 //build the header of the table with column names from our data file  
 			 int i = 0;
