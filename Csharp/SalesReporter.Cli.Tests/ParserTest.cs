@@ -9,15 +9,15 @@ namespace SalesReporter.Cli.Tests;
 public class ParserTest
 {
     [Fact]
-    public void ParseHeaderTest()
+    void ParseHeaderTest()
     {
         string file = "./data.csv";
         CSVParser parser = new CSVParser(file);
-        Check.That(parser.parseHeader()).IsEqualTo("orderid,userName,numberOfItems,totalOfBasket,dateOfBuy");
+        Check.That(parser.parseHeader()).IsEqualTo(new List<string>(){"orderid", "userName", "numberOfItems", "totalOfBasket", "dateOfBuy"});
     }
 
     [Fact]
-    public void ParseDataTest()
+    void ParseDataTest()
     {
         string file = "./data.csv";
         CSVParser parser = new CSVParser(file);
@@ -40,27 +40,29 @@ public class ParserTest
     }
 
     [Fact]
-    public void CreateReportDTO()
+    void CreateReportDTO()
     {
         // Given
         string file = "./data.csv";
         CSVParser parser = new CSVParser(file);
-        //OrderDto expectedFirstOrder = createExpectedOrder();
+        OrderDto expectedFirstOrder = CreateExpectedOrder();
         // When
-        //List<OrderDto> ordersList = parser.CreateOrdersList();
+        List<OrderDto> ordersList = parser.CreateOrdersList();
         // Then
-        //Check.That(ordersList.Count).IsEqualTo(5);
-        //Check.That(ordersList[0]).IsEqualTo(expectedFirstOrder);
+        Check.That(ordersList.Count).IsEqualTo(5);
+        Check.That(ordersList[0].Client).IsEqualTo(expectedFirstOrder.Client);
+        Check.That(ordersList[0].dataTitles).IsEqualTo(expectedFirstOrder.dataTitles);
+        Check.That(ordersList[0].DayOfBuy).IsEqualTo(expectedFirstOrder.DayOfBuy);
     }
 
-    private static OrderDto createExpectedOrder()
+    private static OrderDto CreateExpectedOrder()
     {
         OrderDto expectedFirstOrder = new OrderDto();
         expectedFirstOrder.OrderId = "1";
-        expectedFirstOrder.UserName = "peter";
-        expectedFirstOrder.NumberOfItems = "3";
-        expectedFirstOrder.TotalOfBasket = "123.00";
-        expectedFirstOrder.DayOfBuy = "2021-11-30";
+        expectedFirstOrder.Client = " peter";
+        expectedFirstOrder.NumberOfItems = 3;
+        expectedFirstOrder.TotalOfBasket = 123.00;
+        expectedFirstOrder.DayOfBuy = " 2021-11-30";
         return expectedFirstOrder;
     }
 }

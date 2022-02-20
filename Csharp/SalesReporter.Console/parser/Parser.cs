@@ -10,7 +10,4 @@ public abstract class Parser
     }
 
     public abstract List<OrderDto> CreateOrdersList();
-
-
-
 }

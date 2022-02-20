@@ -12,13 +12,12 @@ public class CSVParser : Parser
 
     private String[] getAllLines()
     {
-        return File.ReadAllLines(file);
+        return File.ReadAllLines(file); // Handle exception
     }
 
     public List<string> parseHeader()
     {
         var columnInfos = new List<string>();
-        //build the header of the table with column names from our data file  
         foreach (var columName in contentLines[0].Split(','))
         {
             columnInfos.Add(columName);
@@ -34,14 +33,14 @@ public class CSVParser : Parser
     public override List<OrderDto> CreateOrdersList()
     {
         List<OrderDto> ordersList = new List<OrderDto>();
-        foreach (string line in contentLines)
+        foreach (string line in contentLines.Skip(1))
         {
             var cells = line.Split(CSV_SEPARATOR);
             OrderDto orderData = new OrderDto();
             orderData.OrderId = cells[0];
-            orderData.UserName = cells[1];
-            orderData.NumberOfItems = cells[2];
-            orderData.TotalOfBasket = cells[3];
+            orderData.Client = cells[1];
+            orderData.NumberOfItems = int.Parse(cells[2]);
+            orderData.TotalOfBasket = double.Parse(cells[3]);
             orderData.DayOfBuy = cells[4];
             ordersList.Add(orderData);
         }

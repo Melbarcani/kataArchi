@@ -2,29 +2,39 @@
 
 public class OrderDto
 {
+    public List<string> dataTitles { get; }
+
+    public List<string> GetValues()
+    {
+        return new List<string> {OrderId, Client, NumberOfItems.ToString(), TotalOfBasket.ToString("F"), DayOfBuy};
+    }
     public string OrderId
     {
-        get => OrderId;
-        set => OrderId = value;
+        get;
+        set;
     }
-    public string UserName
+    public string Client
     {
-        get => UserName;
-        set => UserName = value;
+        get;
+        set;
     }
-    public string NumberOfItems
+    public int NumberOfItems
     {
-        get => NumberOfItems;
-        set => NumberOfItems = value;
+        get;
+        set;
     }
-    public string TotalOfBasket
+    public double TotalOfBasket
     {
-        get => TotalOfBasket;
-        set => TotalOfBasket = value;
+        get;
+        set;
     }
     public string DayOfBuy
     {
-        get => DayOfBuy;
-        set => DayOfBuy = value;
+        get;
+        set;
+    }
+    public OrderDto()
+    {
+        dataTitles = new List<string> {"orderid", "userName", "numberOfItems", "totalOfBasket", "dateOfBuy"};
     }
 }
