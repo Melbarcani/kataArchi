@@ -12,7 +12,7 @@ public class ParserTest
     public void ParseHeaderTest()
     {
         string file = "./data.csv";
-        Parser parser = new Parser(file);
+        CSVParser parser = new CSVParser(file);
         Check.That(parser.parseHeader()).IsEqualTo("orderid,userName,numberOfItems,totalOfBasket,dateOfBuy");
     }
 
@@ -20,7 +20,7 @@ public class ParserTest
     public void ParseDataTest()
     {
         string file = "./data.csv";
-        Parser parser = new Parser(file);
+        CSVParser parser = new CSVParser(file);
 
         string[] goldenData =
         {
@@ -37,5 +37,30 @@ public class ParserTest
             Check.That(line).IsEqualTo(goldenData[i]);
             i++;
         }
+    }
+
+    [Fact]
+    public void CreateReportDTO()
+    {
+        // Given
+        string file = "./data.csv";
+        CSVParser parser = new CSVParser(file);
+        //OrderDto expectedFirstOrder = createExpectedOrder();
+        // When
+        //List<OrderDto> ordersList = parser.CreateOrdersList();
+        // Then
+        //Check.That(ordersList.Count).IsEqualTo(5);
+        //Check.That(ordersList[0]).IsEqualTo(expectedFirstOrder);
+    }
+
+    private static OrderDto createExpectedOrder()
+    {
+        OrderDto expectedFirstOrder = new OrderDto();
+        expectedFirstOrder.OrderId = "1";
+        expectedFirstOrder.UserName = "peter";
+        expectedFirstOrder.NumberOfItems = "3";
+        expectedFirstOrder.TotalOfBasket = "123.00";
+        expectedFirstOrder.DayOfBuy = "2021-11-30";
+        return expectedFirstOrder;
     }
 }

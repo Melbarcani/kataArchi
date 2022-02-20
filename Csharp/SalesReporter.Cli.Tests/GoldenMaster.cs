@@ -52,4 +52,22 @@ public class GoldenMaster
 "
         );
     }
+    
+    [Fact]
+    public void SampleData_on_unknown_command()
+    {
+        using var writer = new StringWriter();
+        Console.SetOut(writer);
+        Console.SetError(writer);
+        Program.Main(new string[]{"rep","./data.csv"});
+        var sut = writer.ToString();
+        Check.That(sut).IsEqualTo(
+            @$"=== Sales Viewer ===
+[ERR] your command is not valid 
+Help: 
+    - [print]  : show the content of our commerce records in data.csv
+    - [report] : show a summary from data.csv records 
+"
+        );
+    }
 }

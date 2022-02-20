@@ -1,14 +1,12 @@
 ﻿namespace SalesReporterKata;
 
-public class Parser
+public class CSVParser : Parser
 {
     private static char CSV_SEPARATOR = ',';
-    private string file;
     private string[] contentLines;
 
-    public Parser(string file)
+    public CSVParser(string file) : base(file)
     {
-        this.file = file;
         contentLines = getAllLines();
     }
 
@@ -17,9 +15,15 @@ public class Parser
         return File.ReadAllLines(file);
     }
 
-    public String parseHeader()
+    public List<string> parseHeader()
     {
-        return contentLines[0];
+        var columnInfos = new List<string>();
+        //build the header of the table with column names from our data file  
+        foreach (var columName in contentLines[0].Split(','))
+        {
+            columnInfos.Add(columName);
+        }
+        return columnInfos;
     }
 
     public IEnumerable<string> parseData()
@@ -27,7 +31,7 @@ public class Parser
         return contentLines.Skip(1);
     }
 
-    public List<OrderDto> ParseOrdersList()
+    public override List<OrderDto> CreateOrdersList()
     {
         List<OrderDto> ordersList = new List<OrderDto>();
         foreach (string line in contentLines)

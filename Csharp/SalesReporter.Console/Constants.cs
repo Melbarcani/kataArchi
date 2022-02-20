@@ -1,6 +1,6 @@
 ﻿namespace SalesReporterKata;
 
-public class Constant
+public class Constants
 {
     public static string SALES_VIEWER_TITLE = "=== Sales Viewer ===";
     public static string NUMBER_OF_SALES = " Number of sales";
