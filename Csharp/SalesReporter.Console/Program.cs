@@ -25,7 +25,7 @@ public static class Program
     {
         public static void Run(string command, string file)
         {
-            CSVParser parser = new CSVParser(file);
+            Parser parser = new CSVParser(file);
             var ordersList = parser.CreateOrdersList();
             var dataToDisplay = CommandExecutorStrategyFactory.Create(command, ordersList).Execute();
             Console.Write(dataToDisplay);
